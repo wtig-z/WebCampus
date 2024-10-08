@@ -2,7 +2,7 @@
   <div class="body">
     <div class="video-bg">
       <video width="320" height="240" autoplay loop muted>
-        <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4">
+        <source src="../assets/img/7btrrd.mp4" type="video/mp4">
       </video>
     </div>
     <div :class="isBlack ? 'black-text' : 'white-text'" class="dark-light" @click="toggleTheme">
@@ -18,16 +18,19 @@
         <!-- 修改密码表单 -->
         <form @submit.prevent="handleChangePassword" id="SignInFormData">
           <div class="title">
-            <h1>修改密码</h1>
+            <h1 style="color: var(--text-color); /* 使用文本颜色变量 */">修改密码</h1>
           </div>
 
-          <input type="password" v-model="currentPassword" placeholder="当前密码">
-          <input type="password" v-model="newPassword" placeholder="新密码">
-          <input type="password" v-model="confirmNewPassword" placeholder="确认新密码">
+          <input type="password" v-model="currentPassword" placeholder="当前密码" style="font-weight: bold;
+  color: black;">
+          <input type="password" v-model="newPassword" placeholder="新密码" style="font-weight: bold;
+  color: black;">
+          <input type="password" v-model="confirmNewPassword" placeholder="确认新密码" style="font-weight: bold;
+  color: black;">
           
-          <button type="submit" title="修改密码">修改密码</button>
+          <button type="submit" title="修改密码" style="color: var(--text-color); /* 使用文本颜色变量 */">修改密码</button>
 
-          <small>
+          <small style="color: var(--text-color); /* 使用文本颜色变量 */">
             忘记密码? <label for="SignUp" @click="toggleAuthMode">找回</label>
           </small>
           
@@ -42,8 +45,10 @@
           <div class="title">
             <h1>找回密码</h1>
           </div>
-          <input type="text" v-model="nickname" placeholder="用户名" required>
-          <input type="email" v-model="resetEmail" placeholder="E-mail" required>
+          <input type="text" v-model="nickname" placeholder="用户名" required style="font-weight: bold;
+  color: black;">
+          <input type="email" v-model="resetEmail" placeholder="E-mail" required style="font-weight: bold;
+  color: black;">
           
           <button type="submit" title="找回密码">找回密码</button>
           <small>返回 <router-link class="back-link" to="/login">登录</router-link></small>
@@ -128,6 +133,7 @@ export default {
 
       const textColor = this.isLightMode ? 'var(--light-text-color)' : 'var(--dark-text-color)';
       document.documentElement.style.setProperty('--login-text-color', textColor);
+      document.documentElement.style.setProperty('--text-color', textColor); 
     },
     
     toggleAuthMode() {
@@ -216,15 +222,115 @@ export default {
 };
 </script>
 <style lang="less">
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+//@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+/* Black 900 */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../assets/fonts/Poppins-Black.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-Black.woff') format('woff');
+}
 
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 900;
+  src: url('../assets/fonts/Poppins-BlackItalic.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-BlackItalic.woff') format('woff');
+}
+
+/* Bold 700 */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/Poppins-Bold.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../assets/fonts/Poppins-BoldItalic.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-BoldItalic.woff') format('woff');
+}
+
+/* Extra Bold 800 */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../assets/fonts/Poppins-ExtraBold.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 800;
+  src: url('../assets/fonts/Poppins-ExtraBoldItalic.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-ExtraBoldItalic.woff') format('woff');
+}
+
+/* Light 300 */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../assets/fonts/Poppins-Light.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 300;
+  src: url('../assets/fonts/Poppins-LightItalic.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-LightItalic.woff') format('woff');
+}
+
+/* Regular 400 */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/Poppins-Regular.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../assets/fonts/Poppins-Italic.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-Italic.woff') format('woff');
+}
+
+/* SemiBold 600 */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../assets/fonts/Poppins-SemiBold.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 600;
+  src: url('../assets/fonts/Poppins-SemiBoldItalic.woff2') format('woff2'),
+       url('../assets/fonts/Poppins-SemiBoldItalic.woff') format('woff');
+}
 * {
   outline: none;
   box-sizing: border-box;
 }
 
-:root {
-  --light-text-color: black; /* 光模式文本颜色 */
+:root { --text-color: var(--light-text-color); /* 默认文本颜色为暗模式 */
+  --light-text-color:black; /* 光模式文本颜色 */
   --dark-text-color: white; /* 暗模式文本颜色 */
   --login-text-color: plum; /* 默认颜色 */
   --dropdown-bg: #21242d;
@@ -345,7 +451,7 @@ form {
 
 input,
 button {
-    color: #111;
+  color: var(--text-color); /* 使用文本颜色变量 */
     padding: 12px 15px;
     border: none;
     outline: none;
@@ -357,7 +463,8 @@ button {
     background: #1ed760;
     text-transform: uppercase;
     font-weight: bold;
-    color: #fff;
+   // color: #fff;
+   color: var(--text-color); /* 使用文本颜色变量 */
     cursor: pointer;
     margin-bottom: 10px;
 }

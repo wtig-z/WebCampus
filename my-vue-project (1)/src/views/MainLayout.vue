@@ -2,7 +2,7 @@
   <div class="body">
     <div class="video-bg">
       <video width="320" height="240" autoplay loop muted>
-        <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4">
+        <source src="../assets/img/7btrrd.mp4" type="video/mp4">
       </video>
     </div>
     <div :class="isBlack ? 'black-text' : 'white-text'" class="dark-light" @click="toggleTheme">
@@ -10,7 +10,7 @@
         <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
       </svg>
     </div>
-    <div class="app">
+    <div class="app" style=" height: 830px; width: 1050px;">
 
       <div class="header">
         <div class="logo">
@@ -388,14 +388,15 @@ body.light-mode .video-bg:before {
 
   
  background-color: var(--theme-bg-color);
- max-width: 1250px;
- max-height: 860px;
- height: 90vh;
+ height: 830px;
+    width: 1050px;
+    margin: 0 auto;
+    
  display: flex;
  flex-direction: column;
  overflow: hidden;
  position: relative;
- width: 100%;
+
  border-radius: 14px;
  backdrop-filter: blur(20px);
  -webkit-backdrop-filter: blur(20px);
@@ -425,7 +426,7 @@ top:-30px;
  display: flex;
  align-items: center;
  flex-shrink: 0;
- height: 58px;
+ height: 84px;
  width: 100%;
  border-bottom: 1px solid var(--border-color);
  padding: 0 30px;
@@ -439,7 +440,7 @@ top:-30px;
   background-position: center;
   background-size: contain; /* 等比例缩放并完全展示图片 */
   background-repeat: no-repeat;
-  width: 134px; /* 设置元素宽度 */
+  width: 934px; /* 设置元素宽度 */
   height: 60px; /* 设置元素高度 */
   opacity: 0.8; /* 设置透明度，值为0到1之间，1为完全不透明 */
 }
@@ -670,7 +671,7 @@ top:-30px;
  height: 58px;
  flex-shrink: 0;
  .header-menu {
-  margin-left: 150px;
+  margin-left: 50px;
   @media screen and (max-width: 1055px) {
    margin: auto;
   }
@@ -687,6 +688,8 @@ top:-30px;
 }
 
 .menu-link-main {
+  position: relative;
+  top: -10px;
  text-decoration: none;
  color: var(--theme-color);
  padding: 0 30px;

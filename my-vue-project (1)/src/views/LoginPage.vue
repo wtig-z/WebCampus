@@ -3,7 +3,7 @@
     <div class="video-bg">
       <video width="320" height="240" autoplay loop muted>
         <source
-          src="https://assets.codepen.io/3364143/7btrrd.mp4"
+          src="../assets/img/7btrrd.mp4"
           type="video/mp4"
         />
       </video>
@@ -36,7 +36,7 @@
           id="SignInFormData"
           v-if="!isRegister"
         >
-          <div class="title">
+          <div class="title" style="color: var(--text-color); /* 使用文本颜色变量 */">
             <h1>登录</h1>
           </div>
 
@@ -44,24 +44,26 @@
             v-model="loginForm.username"
             type="text"
             id="username"
-            placeholder="Username"
-          />
+            placeholder="用户名"
+          style="font-weight: bold;
+  color: black;"/>
           <input
             v-model="loginForm.password"
             type="password"
             id="password"
-            placeholder="Password"
-          />
-          <button type="submit" title="Sign In">Let me in</button>
-          <small>
+            placeholder="密码"
+         style="font-weight: bold;
+  color: black;">
+          <button type="submit" title="Sign In" style="color: var(--text-color); /* 使用文本颜色变量 */">Let me in</button>
+          <small style="color: var(--text-color); /* 使用文本颜色变量 */">
             Forgot Your Password?<router-link class="reset-link" to="/change"
-              >Reset</router-link
+              >重置</router-link
             >
           </small>
-          <small>
+          <small style="color: var(--text-color); /* 使用文本颜色变量 */">
             Don't have an account?
             <!-- 使用 label 触发 radio 按钮的切换 -->
-            <label for="SignUp">Sign Up</label>
+            <label for="SignUp" >注册</label>
           </small>
           <p v-if="authMessage">{{ authMessage }}</p>
           <!-- 显示消息 -->
@@ -70,29 +72,32 @@
         <!-- 注册表单 -->
         <form @submit.prevent="handleSubmit" id="SignUpFormData" v-else>
           <div class="title">
-            <h1>注册</h1>
+            <h1 style="color: var(--text-color); /* 使用文本颜色变量 */">注册</h1>
           </div>
           <input
             v-model="registerForm.name"
             type="text"
             id="name"
-            placeholder="Username"
-          />
+            placeholder="用户名"
+          style="font-weight: bold;
+  color: black;"/>
           <input
             v-model="registerForm.email"
             type="email"
             id="email"
             placeholder="E-mail"
-          />
+          style="font-weight: bold;
+  color: black;"/>
           <input
             v-model="registerForm.password"
             type="password"
             id="password"
-            placeholder="New Password"
-          />
-          <button type="submit" title="Sign Up">Sign Up</button>
-          <small>
-            Back to <label for="SignIn">Login</label>
+            placeholder="新密码"
+          style="font-weight: bold;
+  color: black;"/>
+          <button type="submit" title="Sign Up">注册</button>
+          <small style="color: var(--text-color); /* 使用文本颜色变量 */">
+            返回 <label for="SignIn">登录</label>
           </small>
           <p v-if="authMessage">{{ authMessage }}</p>
           <!-- 显示消息 -->
@@ -160,15 +165,11 @@ export default {
     }, // 关闭重置密码模态框
     toggleTheme() {
       this.isLightMode = !this.isLightMode;
-      document.body.classList.toggle("light-mode");
+      document.body.classList.toggle('light-mode');
 
-      const textColor = this.isLightMode
-        ? "var(--light-text-color)"
-        : "var(--dark-text-color)";
-      document.documentElement.style.setProperty(
-        "--login-text-color",
-        textColor
-      );
+      const textColor = this.isLightMode ? 'var(--light-text-color)' : 'var(--dark-text-color)';
+      document.documentElement.style.setProperty('--login-text-color', textColor);
+      document.documentElement.style.setProperty('--text-color', textColor); 
     },
 
     async handleSubmit() {
@@ -258,6 +259,9 @@ export default {
 }
 
 :root {
+  --text-color: var(--light-text-color); /* 默认文本颜色为暗模式 */
+ 
+
   --light-text-color: black; /* 光模式文本颜色 */
   --dark-text-color: white; /* 暗模式文本颜色 */
   --login-text-color: plum; /* 默认颜色 */
@@ -304,7 +308,8 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  color: #eee;
+  //color: #eee;
+  color: var(--text-color); /* 使用文本颜色变量 */
 }
 
 ::selection {
@@ -374,7 +379,8 @@ form {
 
 input,
 button {
-  color: #111;
+//  color: #111;
+color: var(--text-color); /* 使用文本颜色变量 */
   padding: 12px 15px;
   border: none;
   outline: none;
@@ -386,7 +392,8 @@ button {
   background: #1ed760;
   text-transform: uppercase;
   font-weight: bold;
-  color: #fff;
+  //color: #fff;
+  color: var(--text-color); /* 使用文本颜色变量 */
   cursor: pointer;
   margin-bottom: 10px;
 }
