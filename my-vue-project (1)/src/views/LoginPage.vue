@@ -259,7 +259,7 @@ export default {
 }
 
 :root {
-  --text-color: var(--light-text-color); /* 默认文本颜色为暗模式 */
+ // --text-color: var(--dark-text-color); /* 默认文本颜色为暗模式 */
  
 
   --light-text-color: black; /* 光模式文本颜色 */

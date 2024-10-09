@@ -43,7 +43,7 @@
         <!-- 找回密码表单 -->
         <form @submit.prevent="handleRecoverPassword" id="SignUpFormData">
           <div class="title">
-            <h1>找回密码</h1>
+            <h1 style="color: var(--text-color); /* 使用文本颜色变量 */">找回密码</h1>
           </div>
           <input type="text" v-model="nickname" placeholder="用户名" required style="font-weight: bold;
   color: black;">
@@ -329,7 +329,7 @@ export default {
   box-sizing: border-box;
 }
 
-:root { --text-color: var(--light-text-color); /* 默认文本颜色为暗模式 */
+:root { //--text-color: var(--light-text-color); /* 默认文本颜色为暗模式 */
   --light-text-color:black; /* 光模式文本颜色 */
   --dark-text-color: white; /* 暗模式文本颜色 */
   --login-text-color: plum; /* 默认颜色 */
