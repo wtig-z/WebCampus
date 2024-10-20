@@ -7,6 +7,7 @@ import ChangePage from '../views/ChangePage.vue'
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import ChangePassword from '../views/ChangePassword.vue';
+import JobTrend from '../views/JobTrend.vue';
 
 const routes = [
     {
@@ -37,6 +38,12 @@ const routes = [
     { path: '/login2',name: 'login2', component: Login },
     { path: '/register',name: 'register', component: Register },
     { path: '/change-password',name: 'change-password', component: ChangePassword },
+    ,
+    {
+        path: '/job-trend', // 保持小写路径
+        name: 'JobTrend',
+        component: JobTrend
+    }
 
 ]
 

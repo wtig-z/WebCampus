@@ -1,5 +1,6 @@
 <template>
   <div class="body">
+  
     <div class="video-bg">
       <video width="320" height="240" autoplay loop muted>
         <source src="../assets/img/7btrrd.mp4" type="video/mp4">
@@ -17,9 +18,11 @@
           <!-- 可以留空，或者根据需要加入 -->
         </div>
         <div class="nav">
-          <a class="menu-link" href="#">平台主页</a>
-          <a class="menu-link notify is-active" href="#">毕业生数据</a>
-          <a class="menu-link" href="#">就业趋势分析</a>
+          <router-link class="menu-link notify is-active" to="/MainLayout">平台主页</router-link>
+          <a class="menu-link" href="#">毕业生数据</a>
+          <!-- <a class="menu-link notify is-active" href="./JobTrend.vue" target=''>毕业生数据</a> -->
+          <router-link class="menu-link  " to="/job-trend">就业趋势分析</router-link>
+
           <a class="menu-link notify" href="#">企业反馈</a>
         </div>
         <div class="search-box">
@@ -183,8 +186,10 @@
 </template>
 
 <script>
+
 export default {
   // name:MainLayout,
+  
   data() {
     return {
       isLightMode: false,
