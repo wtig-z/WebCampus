@@ -8,6 +8,9 @@ import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import ChangePassword from '../views/ChangePassword.vue';
 import JobTrend from '../views/JobTrend.vue';
+import GraduateData from '../views/GraduateData.vue';
+import Feedback from '../views/Feedback.vue';
+
 
 const routes = [
     {
@@ -43,6 +46,16 @@ const routes = [
         path: '/job-trend', // 保持小写路径
         name: 'JobTrend',
         component: JobTrend
+    },
+    {
+        path: '/graduate-data', // 保持小写路径
+        name: 'GraduateData',
+        component: GraduateData
+    },
+    {
+        path: '/feed-back', // 保持小写路径
+        name: 'Feedback',
+        component: Feedback
     }
 
 ]

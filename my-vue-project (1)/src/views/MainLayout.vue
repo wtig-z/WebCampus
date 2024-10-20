@@ -19,11 +19,13 @@
         </div>
         <div class="nav">
           <router-link class="menu-link notify is-active" to="/MainLayout">平台主页</router-link>
-          <a class="menu-link" href="#">毕业生数据</a>
+         
+          <router-link class="menu-link " to="/graduate-data">毕业生数据</router-link>
+            
           <!-- <a class="menu-link notify is-active" href="./JobTrend.vue" target=''>毕业生数据</a> -->
           <router-link class="menu-link  " to="/job-trend">就业趋势分析</router-link>
 
-          <a class="menu-link notify" href="#">企业反馈</a>
+          <router-link class="menu-link" to="/feed-back">企业反馈</router-link>
         </div>
         <div class="search-box">
           <input type="text" placeholder="搜索毕业生数据">
