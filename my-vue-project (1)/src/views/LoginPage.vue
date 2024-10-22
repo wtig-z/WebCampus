@@ -322,7 +322,7 @@ body {
   height: 100vh;
   display: grid;
   place-content: center;
-  background: #1ed760;
+  // background: #1ed760;
   overflow: hidden;
 }
 
@@ -389,7 +389,7 @@ color: var(--text-color); /* 使用文本颜色变量 */
 }
 
 button {
-  background: #1ed760;
+  // background: #1ed760;
   text-transform: uppercase;
   font-weight: bold;
   //color: #fff;

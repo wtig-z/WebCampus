@@ -18,7 +18,7 @@
             <!-- 可以留空，或者根据需要加入 -->
           </div>
           <div class="nav">
-            <router-link class="menu-link " to="/MainLayout">平台主页</router-link>
+            <router-link class="menu-link " to="/index">平台主页</router-link>
             
             <router-link class="menu-link " to="/graduate-data">毕业生数据</router-link>
             

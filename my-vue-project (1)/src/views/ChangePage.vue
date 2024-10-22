@@ -329,7 +329,8 @@ export default {
   box-sizing: border-box;
 }
 
-:root { //--text-color: var(--light-text-color); /* 默认文本颜色为暗模式 */
+:root { 
+  --text-color:  white;/* 默认文本颜色为暗模式 */
   --light-text-color:black; /* 光模式文本颜色 */
   --dark-text-color: white; /* 暗模式文本颜色 */
   --login-text-color: plum; /* 默认颜色 */
@@ -349,6 +350,7 @@ export default {
 }
 
 body {
+  
   color: var(--text-color);
   font-family: var(--body-font);
   background-image: url(https://wallpapershome.com/images/wallpapers/macos-big-sur-1280x720-dark-wwdc-2020-22655.jpg);
@@ -376,7 +378,7 @@ body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: #eee;
+    
 }
 
 ::selection {
@@ -389,7 +391,7 @@ body {
     height: 100vh;
     display: grid;
     place-content: center;
-    background: #1ed760;
+    // background: #1ed760;
     overflow: hidden;
 }
 
