@@ -180,13 +180,16 @@
               </div>
             </div>
             <!-- 插槽：内容页面可以在这里填充具体内容 -->
-            <slot name="content">
+             <div class="jchart">
+              <slot name="content">
 
-            <EmploymentBarChart/>
+<EmploymentBarChart/>
 
 
 
-            </slot>
+</slot>
+             </div>
+          
           </div>
         </div>
       </div>
@@ -1168,6 +1171,22 @@
    background: var(--scrollbar-bg);
    border-radius: 10px;
   }
-  
+  .jchart {
+  position: relative;                /* 设为相对定位以便后续绝对定位 */
+  width: 90%;                       /* 根据需要设置宽度 */
+  height: 400px;                    /* 根据需要设置高度 */
+  overflow: hidden; 
+  left:-70px;
+  height: 90%;                 /* 超出部分隐藏 */
+}
+
+.jchart > * {
+  position: absolute;                /* 绝对定位 */
+  top: 50%;                          /* 垂直居中 */
+  left: 50%;                         /* 水平居中 */
+  transform: translate(-50%, -50%) scale(0.8); /* 缩放，调整比例 */
+  max-width: none;                   /* 取消最大宽度限制 */
+  max-height: none;                  /* 取消最大高度限制 */
+}
   </style>
   

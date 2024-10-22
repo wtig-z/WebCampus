@@ -181,9 +181,12 @@
               </div>
             </div>
             <!-- 插槽：内容页面可以在这里填充具体内容 -->
-            <slot name="content">
+             <div class="fchart">
+              <slot name="content">
                 <FeedBackChart/>
             </slot>
+             </div>
+           
           </div>
         </div>
       </div>
@@ -1165,6 +1168,11 @@
    background: var(--scrollbar-bg);
    border-radius: 10px;
   }
-  
+  .fchart{
+    top:10px;
+    display: flex;
+    position: relative;
+    left:-100px;
+  }
   </style>
   

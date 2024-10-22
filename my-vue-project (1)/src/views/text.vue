@@ -1,74 +1,135 @@
 <template>
-  <el-container class="container">
-    <!-- Header -->
-    <el-header class="header">
-      <h1><i class="fa fa-chart-line"></i> 面向B端大学生就业数据分析可视化平台</h1>
-    </el-header>
-
-    <!-- 主体内容 -->
-    <el-main>
-      <!-- 技术栈展示 -->
-      <el-card class="section">
-        <h2><i class="fa fa-code"></i> 技术栈展示</h2>
-        <el-row :gutter="10" class="tech-tags">
-          <el-col :span="24">
-            <el-tag type="primary">Vue.js</el-tag>
-            <el-tag type="success">ECharts/Chart.js</el-tag>
-            <el-tag type="info">Element Plus</el-tag>
-            <el-tag type="warning">C# ASP.NET Web API</el-tag>
-            <el-tag type="danger">Python</el-tag>
-            <el-tag type="dark">SQL Server</el-tag>
-          </el-col>
-        </el-row>
-      </el-card>
-
-      <!-- 平台介绍 -->
-      <el-card class="section">
-        <h2><i class="fa fa-info-circle"></i> 平台介绍</h2>
-        <p>
-          该大学生就业数据分析可视化平台将为学校提供全方位的数据支持，帮助其更好地理解毕业生的就业表现，及时调整招生和教学计划，并与市场需求保持同步，为学生的职业发展铺平道路。
-        </p>
-      </el-card>
-
-      <!-- 功能模块与成果说明 -->
-      <el-row :gutter="20" class="section">
-        <!-- 功能模块 -->
-        <el-col :span="12">
-          <el-card>
-            <h3><i class="fa fa-tasks"></i> 功能模块</h3>
-            <el-list>
-              <el-list-item>就业数据分析模块</el-list-item>
-              <el-list-item>企业反馈数据分析模块</el-list-item>
-              <el-list-item>招生与就业趋势分析模块</el-list-item>
-              <el-list-item>教学课程优化建议模块</el-list-item>
-            </el-list>
-          </el-card>
-        </el-col>
-
-        <!-- 成果说明 -->
-        <el-col :span="12">
-          <el-card>
-            <h3><i class="fa fa-check-circle"></i> 成果说明</h3>
-            <el-list>
-              <el-list-item>可视化平台</el-list-item>
-              <el-list-item>就业趋势报告</el-list-item>
-              <el-list-item>课程优化建议</el-list-item>
-              <el-list-item>其他相关成果</el-list-item>
-            </el-list>
-          </el-card>
-        </el-col>
-      </el-row>
-    </el-main>
-
-    <!-- Footer -->
-    <el-footer class="footer">
-      <p>&copy; 2024 大学生就业数据分析平台</p>
-    </el-footer>
-  </el-container>
+  <div>
+    <h2>就业形式分布柱状图</h2>
+    <!-- 使用 :data 代替 :chart-data -->
+    <Bar v-if="chartData.labels.length" :data="chartData" :options="chartOptions" />
+  </div>
 </template>
 
 <script>
-export default {
+import { Bar } from 'vue-chartjs'
+import { Chart, BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend } from 'chart.js'
 
-};
+// 注册所需的 Chart.js 组件
+Chart.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend)
+
+export default {
+  name: 'EmploymentBarChart',
+  components: {
+    Bar
+  },
+  data() {
+    return {
+      labels: [
+        '签劳动合同形式就业',
+        '签就业协议形式就业',
+        '就业&升学其他录用形式就业',
+        '国家基层项目',
+        '地方基层项目',
+        '应征义务兵',
+        '自主创业',
+        '自由职业',
+        '境内升学',
+        '出国、出境（含升学、就业）',
+        '未就业待就业',
+        '不就业拟升学',
+        '其他暂不就业'
+      ],
+      dataValues: [
+        63.0,
+        5.7,
+        12.9,
+        0.2,
+        0.9,
+        0.8,
+        0.8,
+        5.5,
+        1.3,
+        0.7,
+        7.9,
+        0.1,
+        0.1
+      ],
+      chartData: {
+        labels: [],
+        datasets: []
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false, // 允许自定义宽高比例
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: '就业形式分布'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.parsed.y}%`
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: '百分比 (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: '就业形式'
+            },
+            ticks: {
+              autoSkip: false,  // 禁用自动跳过标签
+              maxRotation: 0,   // 禁用旋转，保持水平
+              font: {
+                size: 12        // 适当增大字体
+              }
+            },
+            grid: {
+              display: false    // 隐藏 x 轴的网格线
+            }
+          }
+        }
+      }
+    }
+  },
+  mounted() {
+    this.renderChartData()
+  },
+  methods: {
+    renderChartData() {
+      this.chartData = {
+        labels: this.labels,
+        datasets: [
+          {
+            label: '就业比例 (%)',
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+            data: this.dataValues
+          }
+        ]
+      }
+    }
+  }
+}
 </script>
+
+<style scoped>
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+div {
+  width: 1500px; /* 增加图表宽度 */
+  height: 600px; /* 保持图表高度 */
+}
+</style>

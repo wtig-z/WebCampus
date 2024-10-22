@@ -25,7 +25,7 @@
             <!-- <a class="menu-link notify is-active" href="./JobTrend.vue" target=''>毕业生数据</a> -->
             <router-link class="menu-link  " to="/job-trend">就业趋势分析</router-link>
   
-            <a class="menu-link notify" href="#">企业反馈</a>
+            <router-link class="menu-link" to="/feed-back">企业反馈</router-link>
           </div>
           <div class="search-box">
             <input type="text" placeholder="搜索毕业生数据">
@@ -180,9 +180,19 @@
               </div>
             </div>
             <!-- 插槽：内容页面可以在这里填充具体内容 -->
-            <slot name="content">
-              <GraduatesChart/>
-            </slot>
+             <div class="gchart">
+              <slot name="content">
+            
+              
+            <GraduatesChart/>
+             
+             
+        
+         
+           
+         </slot>
+             </div>
+          
           </div>
         </div>
       </div>
@@ -1164,6 +1174,16 @@
    background: var(--scrollbar-bg);
    border-radius: 10px;
   }
-  
+  .gchart{
+    top:-30px;
+    left: 80px;
+    position: relative;
+    display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center;     /* 垂直居中 */
+  height: 100%;
+
+   
+  }
   </style>
   

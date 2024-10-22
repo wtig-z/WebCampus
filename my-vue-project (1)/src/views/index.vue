@@ -43,11 +43,20 @@
       </div>
       <el-container class="container">
         <!-- Header -->
-        <el-header class="header">
-          <h1><i class="fa fa-chart-line"></i> 面向B端大学生就业数据分析可视化平台</h1>
-        </el-header>
+       
+          <el-header class="header">
+            <el-row>
+              <el-col :span="8"></el-col>
+              <el-col :span="8"></el-col>
+              <el-col :span="8">
+                <h1><i class="fa fa-chart-line"></i> 面向B端大学生就业数据分析可视化平台</h1>
+        
+              </el-col>
+             
+         </el-row>
 
-        <!-- 主体内容 -->
+        </el-header>
+          <!-- 主体内容 -->
         <el-main class="main-content">
           <!-- 技术栈展示 -->
           <section class="section">
@@ -67,7 +76,7 @@
           <!-- 平台介绍 -->
           <section class="section">
             <h2><i class="fa fa-info-circle"></i> 平台介绍</h2>
-            <p>
+            <p style="color: black;">
               该大学生就业数据分析可视化平台将为学校提供全方位的数据支持，帮助其更好地理解毕业生的就业表现，及时调整招生和教学计划，并与市场需求保持同步，为学生的职业发展铺平道路。
             </p>
           </section>
@@ -104,7 +113,7 @@
 
         <!-- Footer -->
         <el-footer class="footer">
-          <p>&copy; 2024 大学生就业数据分析平台</p>
+          <p style="font-size:1.5rem">&copy; 2024 大学生就业数据分析平台</p>
         </el-footer>
       </el-container>
     </div>
@@ -269,7 +278,7 @@ body {
     background-color: transparent;
 
     h1 {
-      font-size: 1.5rem;
+      font-size:2.5rem;
       color: var(--theme-color);
       display: flex;
       align-items: center;
