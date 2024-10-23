@@ -88,10 +88,10 @@
               <div>
                 <h3><i class="fa fa-tasks"></i> 功能模块</h3>
                 <el-list>
-                  <el-list-item>就业数据分析模块</el-list-item>
-                  <el-list-item>企业反馈数据分析模块</el-list-item>
+                  <el-list-item>就业数据分析模块  企业反馈分析模块    招生就业分析模块    课程优化建议模块</el-list-item>
+                  <!-- <el-list-item>企业反馈数据分析模块</el-list-item>
                   <el-list-item>招生与就业趋势分析模块</el-list-item>
-                  <el-list-item>教学课程优化建议模块</el-list-item>
+                  <el-list-item>教学课程优化建议模块</el-list-item> -->
                 </el-list>
               </div>
             </el-col>
@@ -101,10 +101,10 @@
               <div>
                 <h3><i class="fa fa-check-circle"></i> 成果说明</h3>
                 <el-list>
-                  <el-list-item>可视化平台</el-list-item>
-                  <el-list-item>就业趋势报告</el-list-item>
+                  <el-list-item>可视化平台  就业趋势报告  课程优化建议  其他相关成果</el-list-item>
+                  <!-- <el-list-item>就业趋势报告</el-list-item>
                   <el-list-item>课程优化建议</el-list-item>
-                  <el-list-item>其他相关成果</el-list-item>
+                  <el-list-item>其他相关成果</el-list-item> -->
                 </el-list>
               </div>
             </el-col>
@@ -120,7 +120,15 @@
   </div>
 </template>
 <script>
+import { computed } from "vue";
+import { ElForm, ElFormItem } from 'element-plus';
+
 export default {
+  name: "index",
+  components: {
+    ElForm,
+    ElFormItem
+  },
   data() {
     return {
       isLightMode: false,

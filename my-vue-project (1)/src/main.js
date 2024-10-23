@@ -28,9 +28,8 @@ const i18n = createI18n({
 });
 
 const app = createApp(App);
-
-app.use(ElementPlus); // 全局注册 Element Plus
-app.use(store)
+app.use(ElementPlus)
+.use(store)
    .use(router)
    .use(i18n)
    .mount('#app');

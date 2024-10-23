@@ -49,7 +49,7 @@
             <div class="side-wrapper">
               <div class="side-title">数据模块</div>
               <div class="side-menu">
-                <a href="#">
+                <a >
            <svg viewBox="0 0 512 512">
             <g xmlns="http://www.w3.org/2000/svg" fill="currentColor">
              <path d="M0 0h128v128H0zm0 0M192 0h128v128H192zm0 0M384 0h128v128H384zm0 0M0 192h128v128H0zm0 0" data-original="#bfc9d1" />
@@ -57,7 +57,15 @@
             <path xmlns="http://www.w3.org/2000/svg" d="M192 192h128v128H192zm0 0" fill="currentColor" data-original="#82b1ff" />
             <path xmlns="http://www.w3.org/2000/svg" d="M384 192h128v128H384zm0 0M0 384h128v128H0zm0 0M192 384h128v128H192zm0 0M384 384h128v128H384zm0 0" fill="currentColor" data-original="#bfc9d1" />
            </svg>
-           所有数据
+           <div class="custom-form">
+                  <select id="month-select" v-model="form.month" class="select-input">
+                    <option value="" disabled selected>请选择年份</option>
+                    <option v-for="month in months" :key="month.value" :value="month.value">
+                      {{ month.label }}
+                    </option>
+                  </select>
+                </div>
+                
           </a>
           <a href="#">
            <svg viewBox="0 0 488.932 488.932" fill="currentColor">
@@ -183,7 +191,10 @@
             <!-- 插槽：内容页面可以在这里填充具体内容 -->
              <div class="fchart">
               <slot name="content">
-                <FeedBackChart/>
+                <!-- <FeedBackChart/> -->
+                <div class="fchart1">
+      <Doughnut :data="chartData" :options="chartOptions" />
+    </div>
             </slot>
              </div>
            
@@ -194,16 +205,76 @@
   </template>
   
   <script>
-  import FeedBackChart from '@/components/FeedBackChart.vue';
+  import 'element-plus/dist/index.css';
+
+  import { Doughnut } from 'vue-chartjs'
+  import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'
+  import { computed } from "vue";
+import { ElForm, ElFormItem } from 'element-plus';
+  // 注册所需的 Chart.js 组件
+  Chart.register(ArcElement, Tooltip, Legend)
+  
+  //哈哈 import FeedBackChart from '@/components/FeedBackChart.vue';
   export default {
+    name: 'FeedBackChart',
     // name:MainLayout,
     components:{
-        FeedBackChart
+      Doughnut,
+      ElForm,
+      ElFormItem
+      //哈哈  FeedBackChart
     },
     data() {
       return {
+        form: {
+        region: '2024'  // 存储选中的区域值
+      },
+      months: [
+        { label: '2023年', value: '2024' },
+        { label: '2023年', value: '2024' },
+        { label: '2022年', value: '2024' },
+        { label: '2021年', value: '2024' },
+        { label: '2021年', value: '2024' },
+      ],
         isLightMode: false,
         isBlack: true,
+        chartData: {
+          labels: ['很满意', '满意', '不满意', '很不满意'],
+          datasets: [
+            {
+              label: '毕业生满意度',
+              backgroundColor: ['#1f7a8c', '#76c893', '#ffb703', '#ff595e'],
+              data: [37, 59, 2, 2],
+              borderWidth: 1
+            }
+          ]
+        },
+        chartOptions: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top'
+            },
+            title: {
+              display: true,
+              text: '用人单位对毕业生的总体满意度'
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  let label = context.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  label += context.raw + '%';
+                  return label;
+                }
+              }
+            }
+          }
+        }
       };
     },
     methods: {
@@ -220,6 +291,33 @@
   <style lang="less" >
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
   
+  .select-input {
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background-color: transparent;
+    // color: var(--theme-color);
+    font-size: 14px;
+    font-weight: 500;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bbb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: #3a6df0;
+      box-shadow: 0 0 0 2px rgba(40, 110, 150);
+    }
+
+    option {
+      background-color: white;
+      color: black;
+    }
+  }
+
   /* 定义 LESS 的函数，用来动态生成颜色 */
   @black-color: black;
   @white-color: white;
@@ -1173,6 +1271,12 @@
     display: flex;
     position: relative;
     left:-100px;
+    .fchart1{
+      
+    width: 100%;
+    height: 400px;
+  
+    }
   }
   </style>
   
