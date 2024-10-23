@@ -59,7 +59,8 @@
            </svg>
            <div class="custom-form">
                   <select id="month-select" v-model="form.month" class="select-input">
-                    <option value="" disabled selected>请选择年份</option>
+                    <!-- <option value="" disabled selected>请选择年份</option> -->
+                    <option value="" disabled>年份切换</option>
                     <option v-for="month in months" :key="month.value" :value="month.value">
                       {{ month.label }}
                     </option>
@@ -227,14 +228,15 @@ import { ElForm, ElFormItem } from 'element-plus';
     data() {
       return {
         form: {
+          month:'',
         region: '2024'  // 存储选中的区域值
       },
       months: [
         { label: '2023年', value: '2024' },
-        { label: '2023年', value: '2024' },
         { label: '2022年', value: '2024' },
         { label: '2021年', value: '2024' },
-        { label: '2021年', value: '2024' },
+        { label: '2020年', value: '2024' },
+        { label: '2019年', value: '2024' },
       ],
         isLightMode: false,
         isBlack: true,
