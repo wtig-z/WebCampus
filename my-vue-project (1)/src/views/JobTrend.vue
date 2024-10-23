@@ -48,7 +48,7 @@
             <div class="side-wrapper">
               <div class="side-title">数据模块</div>
               <div class="side-menu">
-                <a href="#">
+                <a >
            <svg viewBox="0 0 512 512">
             <g xmlns="http://www.w3.org/2000/svg" fill="currentColor">
              <path d="M0 0h128v128H0zm0 0M192 0h128v128H192zm0 0M384 0h128v128H384zm0 0M0 192h128v128H0zm0 0" data-original="#bfc9d1" />
@@ -56,7 +56,16 @@
             <path xmlns="http://www.w3.org/2000/svg" d="M192 192h128v128H192zm0 0" fill="currentColor" data-original="#82b1ff" />
             <path xmlns="http://www.w3.org/2000/svg" d="M384 192h128v128H384zm0 0M0 384h128v128H0zm0 0M192 384h128v128H192zm0 0M384 384h128v128H384zm0 0" fill="currentColor" data-original="#bfc9d1" />
            </svg>
-           所有数据
+           <div class="custom-form">
+                  <select id="month-select" v-model="form.month" class="select-input">
+                    <!-- <option value="" disabled selected>请选择年份</option> -->
+                    <option value="" disabled>年份切换</option>
+                    <option v-for="month in months" :key="month.value" :value="month.value">
+                      {{ month.label }}
+                    </option>
+                  </select>
+                </div>
+                
           </a>
           <a href="#">
            <svg viewBox="0 0 488.932 488.932" fill="currentColor">
@@ -101,7 +110,7 @@
            <svg viewBox="0 0 512 512" fill="currentColor">
             <path d="M499.377 46.402c-8.014-8.006-18.662-12.485-29.985-12.613a41.13 41.13 0 00-.496-.003c-11.142 0-21.698 4.229-29.771 11.945L198.872 275.458c25.716 6.555 47.683 23.057 62.044 47.196a113.544 113.544 0 0110.453 23.179L500.06 106.661C507.759 98.604 512 88.031 512 76.89c0-11.507-4.478-22.33-12.623-30.488zM176.588 302.344a86.035 86.035 0 00-3.626-.076c-20.273 0-40.381 7.05-56.784 18.851-19.772 14.225-27.656 34.656-42.174 53.27C55.8 397.728 27.795 409.14 0 416.923c16.187 42.781 76.32 60.297 115.752 61.24 1.416.034 2.839.051 4.273.051 44.646 0 97.233-16.594 118.755-60.522 23.628-48.224-5.496-112.975-62.192-115.348z" />
            </svg>
-           地理位置分布
+           就业地区流向
           </a>
            <!-- <a href="#">  -->
            <!-- <svg viewBox="0 0 512 512" fill="currentColor">
@@ -183,8 +192,12 @@
              <div class="jchart">
               <slot name="content">
 
-<EmploymentBarChart/>
-
+<!-- <EmploymentBarChart/> -->
+<div class="jchart1">
+    <h2 style="text-align: center;">就业形式分布柱状图</h2>
+    <!-- 使用 :data 代替 :chart-data -->
+    <Bar v-if="chartData.labels.length" :data="chartData" :options="chartOptions" />
+  </div>
 
 
 </slot>
@@ -197,19 +210,130 @@
   </template>
   
   <script>
-  import EmploymentBarChart from '../components/EmploymentBarChart.vue'
+import { Bar } from 'vue-chartjs'
+import { Chart, BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend } from 'chart.js'
+
+// 注册所需的 Chart.js 组件
+Chart.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend)
+
+
+  // import EmploymentBarChart from '../components/EmploymentBarChart.vue'
   export default {
     // name:MainLayout,
+    name: 'EmploymentBarChart',
     components: {
-    EmploymentBarChart
+    // EmploymentBarChart
+    Bar
   },
     data() {
       return {
+        form: {
+          month:'',
+        region: '2024'  // 存储选中的区域值
+      },
+      months: [
+        { label: '2023年', value: '2024' },
+        { label: '2022年', value: '2024' },
+        { label: '2021年', value: '2024' },
+        { label: '2020年', value: '2024' },
+        { label: '2019年', value: '2024' },
+      ],
+        labels: [
+        '签劳动合同形式就业',
+        '签就业协议形式就业',
+        '就业&升学其他录用形式就业',
+        '国家基层项目',
+        '地方基层项目',
+        '应征义务兵',
+        '自主创业',
+        '自由职业',
+        '境内升学',
+        '出国、出境（含升学、就业）',
+        '未就业待就业',
+        '不就业拟升学',
+        '其他暂不就业'
+      ],
+      dataValues: [
+        63.0,
+        5.7,
+        12.9,
+        0.2,
+        0.9,
+        0.8,
+        0.8,
+        5.5,
+        1.3,
+        0.7,
+        7.9,
+        0.1,
+        0.1
+      ],
+      chartData: {
+        labels: [],
+        datasets: []
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: '就业形式分布'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.parsed.y}%`
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: '百分比 (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: '就业形式'
+            }
+          }
+        }
+      },
+
+
         isLightMode: false,
         isBlack: true,
       };
     },
+    mounted() {
+    this.renderChartData()
+  },
     methods: {
+
+      renderChartData() {
+      this.chartData = {
+        labels: this.labels,
+        datasets: [
+          {
+            label: '就业比例 (%)',
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+            data: this.dataValues
+          }
+        ]
+      }
+    },
+
+
       toggleTheme() {
         this.isLightMode = !this.isLightMode;
         document.body.classList.toggle('light-mode');
@@ -223,6 +347,34 @@
   <style lang="less" >
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
   
+  .select-input {
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background-color: transparent;
+    // color: var(--theme-color);
+    font-size: 14px;
+    font-weight: 500;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bbb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: #3a6df0;
+      box-shadow: 0 0 0 2px rgba(40, 110, 150);
+    }
+
+    option {
+      background-color: white;
+      color: black;
+    }
+  }
+
+
   /* 定义 LESS 的函数，用来动态生成颜色 */
   @black-color: black;
   @white-color: white;
@@ -1172,21 +1324,30 @@
    border-radius: 10px;
   }
   .jchart {
-  position: relative;                /* 设为相对定位以便后续绝对定位 */
-  width: 90%;                       /* 根据需要设置宽度 */
-  height: 400px;                    /* 根据需要设置高度 */
-  overflow: hidden; 
-  left:-70px;
-  height: 90%;                 /* 超出部分隐藏 */
+  position: relative;            /* 设为相对定位以便后续绝对定位 */
+  width: 50%;                   /* 根据需要设置宽度 */
+  height: 400px;                /* 设置固定高度或使用百分比 */
+  overflow: hidden;             /* 超出部分隐藏 */
+  left: 50px;                  /* 如果需要位置调整 */
+  overflow: visible;            /* 改为 visible 以允许内容溢出 */
 }
 
 .jchart > * {
-  position: absolute;                /* 绝对定位 */
-  top: 50%;                          /* 垂直居中 */
-  left: 50%;                         /* 水平居中 */
-  transform: translate(-50%, -50%) scale(0.8); /* 缩放，调整比例 */
-  max-width: none;                   /* 取消最大宽度限制 */
-  max-height: none;                  /* 取消最大高度限制 */
+  position: absolute;           /* 改为绝对定位 */
+  top: 0;                       /* 绝对定位到顶部 */
+  left: 0;                      /* 绝对定位到左边 */
+  right: 0;                     /* 保持右边界 */
+  bottom: 0;                    /* 保持下边界 */
+  max-width: 100%;             /* 限制最大宽度 */
+  max-height: 100%;            /* 限制最大高度 */
+  width: auto;                 /* 宽度自动 */
+  height: auto;                /* 高度自动 */
+  object-fit: contain;         /* 确保图像或元素按比例缩放 */
+  transform: none;             /* 移除缩放 */
 }
+
+
+
+
   </style>
   
