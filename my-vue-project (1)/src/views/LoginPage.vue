@@ -2,10 +2,7 @@
   <div class="body">
     <div class="video-bg">
       <video width="320" height="240" autoplay loop muted>
-        <source
-          src="../assets/img/7btrrd.mp4"
-          type="video/mp4"
-        />
+        <source src="../assets/img/7btrrd.mp4" type="video/mp4" />
       </video>
     </div>
     <div
@@ -26,8 +23,23 @@
     </div>
     <div class="app">
       <!-- 绑定 v-model 到 authMode -->
-      <input type="radio" name="optionScreen" id="SignIn" value="SignIn" v-model="authMode" hidden checked />
-      <input type="radio" name="optionScreen" id="SignUp" value="SignUp" v-model="authMode" hidden />
+      <input
+        type="radio"
+        name="optionScreen"
+        id="SignIn"
+        value="SignIn"
+        v-model="authMode"
+        hidden
+        checked
+      />
+      <input
+        type="radio"
+        name="optionScreen"
+        id="SignUp"
+        value="SignUp"
+        v-model="authMode"
+        hidden
+      />
 
       <section>
         <!-- 登录表单 -->
@@ -36,7 +48,7 @@
           id="SignInFormData"
           v-if="!isRegister"
         >
-          <div class="title" style="color: var(--text-color); /* 使用文本颜色变量 */">
+          <div class="title" :style="{ color: textColor }">
             <h1>登录</h1>
           </div>
 
@@ -45,72 +57,91 @@
             type="text"
             id="username"
             placeholder="用户名"
-          style="font-weight: bold;
-  color: black;"/>
+            style="font-weight: bold; color: black;"
+            required
+          />
           <input
             v-model="loginForm.password"
             type="password"
             id="password"
             placeholder="密码"
-         style="font-weight: bold;
-  color: black;">
-          <button type="submit" title="Sign In" style="color: var(--text-color); /* 使用文本颜色变量 */">Let me in</button>
-          <small style="color: var(--text-color); /* 使用文本颜色变量 */">
-            Forgot Your Password?<router-link class="reset-link" to="/change"
-              >重置</router-link
-            >
+            style="font-weight: bold; color: black;"
+            required
+          />
+          <button type="submit" title="Sign In" :style="{ color: textColor }">
+            Let me in
+          </button>
+          <small :style="{ color: textColor }">
+            Forgot Your Password?
+            <router-link class="reset-link" to="/change">重置</router-link>
           </small>
-          <small style="color: var(--text-color); /* 使用文本颜色变量 */">
+          <small :style="{ color: textColor }">
             Don't have an account?
             <!-- 使用 label 触发 radio 按钮的切换 -->
-            <label for="SignUp" >注册</label>
+            <label for="SignUp">注册</label>
           </small>
-          <p v-if="authMessage">{{ authMessage }}</p>
+          <p v-if="authMessage" :style="{ color: authMessageColor }">
+            {{ authMessage }}
+          </p>
           <!-- 显示消息 -->
         </form>
 
         <!-- 注册表单 -->
-        <form @submit.prevent="handleSubmit" id="SignUpFormData" v-else>
+        <form @submit.prevent="handleRegister" id="SignUpFormData" v-else>
           <div class="title">
-            <h1 style="color: var(--text-color); /* 使用文本颜色变量 */">注册</h1>
+            <h1 :style="{ color: textColor }">注册</h1>
           </div>
           <input
             v-model="registerForm.name"
             type="text"
             id="name"
             placeholder="用户名"
-          style="font-weight: bold;
-  color: black;"/>
+            style="font-weight: bold; color: black;"
+            required
+          />
           <input
             v-model="registerForm.email"
             type="email"
             id="email"
             placeholder="E-mail"
-          style="font-weight: bold;
-  color: black;"/>
+            style="font-weight: bold; color: black;"
+            required
+          />
           <input
             v-model="registerForm.password"
             type="password"
             id="password"
             placeholder="新密码"
-          style="font-weight: bold;
-  color: black;"/>
+            style="font-weight: bold; color: black;"
+            required
+          />
           <button type="submit" title="Sign Up">注册</button>
-          <small style="color: var(--text-color); /* 使用文本颜色变量 */">
+          <small :style="{ color: textColor }">
             返回 <label for="SignIn">登录</label>
           </small>
-          <p v-if="authMessage">{{ authMessage }}</p>
+          <p v-if="authMessage" :style="{ color: authMessageColor }">
+            {{ authMessage }}
+          </p>
           <!-- 显示消息 -->
         </form>
       </section>
+
+      <!-- 成功登录的模态框 -->
+      <div v-if="showModal" class="modal-overlay">
+        <div class="modal">
+          <h2>欢迎登陆，管理员！</h2>
+          <button @click="closeModal">确定</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex"; // 导入 mapActions 辅助函数
+import axios from "axios"; // 导入 axios
 
 export default {
+  name: "AuthForm",
   data() {
     return {
       isLightMode: false,
@@ -123,7 +154,7 @@ export default {
       confirmNewPassword: "",
       resetMessage: "",
       changeMessage: "",
-      // 新增用于表单数据的绑定
+      // 用于表单数据的绑定
       loginForm: {
         username: "",
         password: "",
@@ -133,96 +164,149 @@ export default {
         email: "",
         password: "",
       },
-      // 新增用于显示错误或成功消息
+      // 用于显示错误或成功消息
       authMessage: "",
-      // 新增 authMode 用于绑定 radio 按钮
-      authMode: 'SignIn', // 默认显示登录
+      // 用于绑定 radio 按钮
+      authMode: "SignIn", // 默认显示登录
+      // 控制模态框显示
+      showModal: false,
     };
   },
 
   computed: {
     isRegister() {
-      return this.authMode === 'SignUp';
+      return this.authMode === "SignUp";
     },
-    colorModeClass() {
-      return this.isLightMode ? "light-mode-text" : "dark-mode-text";
+    textColor() {
+      return this.isLightMode
+        ? "var(--light-text-color)"
+        : "var(--dark-text-color)";
+    },
+    authMessageColor() {
+      // 根据 authMessage 的内容决定颜色
+      if (this.authMessage.includes("成功")) {
+        return "green";
+      } else if (this.authMessage.includes("失败")) {
+        return "red";
+      }
+      return "black";
     },
   },
 
   methods: {
-    ...mapActions(["login", "register"]), // 映射 Vuex 的 login 和 register 动作
-
     toggleColor() {
       this.isBlack = !this.isBlack;
     },
     toggleResetPassword() {
       this.showResetPassword = !this.showResetPassword; // 切换重置密码模态框显示
       this.showChangePassword = false;
-    }, // 关闭修改密码模态框
+    },
     toggleChangePassword() {
       this.showChangePassword = !this.showChangePassword; // 切换修改密码模态框显示
       this.showResetPassword = false;
-    }, // 关闭重置密码模态框
+    },
     toggleTheme() {
       this.isLightMode = !this.isLightMode;
-      document.body.classList.toggle('light-mode');
+      document.body.classList.toggle("light-mode");
 
-      const textColor = this.isLightMode ? 'var(--light-text-color)' : 'var(--dark-text-color)';
-      document.documentElement.style.setProperty('--login-text-color', textColor);
-      document.documentElement.style.setProperty('--text-color', textColor); 
+      // 使用 CSS 变量动态更改文本颜色
+      const textColor = this.isLightMode
+        ? "var(--light-text-color)"
+        : "var(--dark-text-color)";
+      document.documentElement.style.setProperty(
+        "--login-text-color",
+        textColor
+      );
+      document.documentElement.style.setProperty("--text-color", textColor);
     },
-
     async handleSubmit() {
-      this.authMessage = ""; // 清空之前的消息
-      if (this.isRegister) {
-        // 注册逻辑
-        try {
-          await this.register({
-            name: this.registerForm.name,
-            email: this.registerForm.email,
-            password: this.registerForm.password,
-          });
-          this.authMessage = "注册成功！请登录。";
-          // 切换回登录模式
-          this.authMode = 'SignIn';
-          // 清空注册表单
-          this.registerForm.name = "";
-          this.registerForm.email = "";
-          this.registerForm.password = "";
-        } catch (error) {
-          if (
-            error.response &&
-            error.response.data &&
-            error.response.data.message
-          ) {
-            this.authMessage = `注册失败: ${error.response.data.message}`;
-          } else {
-            this.authMessage = "注册失败，请稍后再试。";
-          }
+  this.authMessage = ""; // 清空之前的消息
+
+  if (!this.isRegister) {
+    // 登录逻辑
+    const { username, password } = this.loginForm;
+    console.log("Attempting to log in with:", username, password);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5185/api/Account/Login",
+        {
+          username: username,
+          password: password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
+      );
+
+      console.log("Response status:", response.status);
+      console.log("Response data:", response.data);
+
+      // 假设成功响应状态码为 200
+      if (response.status === 200) {
+        this.authMessage = "成功登陆，欢迎管理员！";
+
+        // 显示模态框
+        this.showModal = true;
+        console.log("Modal should now be visible:", this.showModal);
+        // 重置表单
+        this.loginForm.username = "";
+        this.loginForm.password = "";
+        setTimeout(() => {
+          this.$router.push({ name: 'index' })
+            .then(() => {
+              console.log("跳转到 /index 成功");
+            })
+            .catch(err => {
+              console.error("跳转到 /index 失败:", err);
+            });
+        }, 2000);
+
       } else {
-        // 登录逻辑
-        try {
-          await this.login({
-            username: this.loginForm.username,
-            password: this.loginForm.password,
-          });
-          this.authMessage = "登录成功！";
-          // 这里可以根据需要跳转到其他页面
-          // 例如: this.$router.push('/dashboard');
-        } catch (error) {
-          if (
-            error.response &&
-            error.response.data &&
-            error.response.data.message
-          ) {
-            this.authMessage = `登录失败: ${error.response.data.message}`;
-          } else {
-            this.authMessage = "登录失败，请检查用户名和密码。";
-          }
-        }
+        this.authMessage = "登录失败，请检查用户名和密码。";
       }
+    } catch (error) {
+      console.error("Login error:", error);
+      // 处理错误响应
+      if (error.response && error.response.status === 401) {
+        this.authMessage = "登录失败：无效的用户名或密码。";
+      } else {
+        this.authMessage = "登录失败：服务器错误，请稍后再试。";
+      }
+    }
+  } else {
+    // 注册逻辑
+    try {
+      // 这里可以添加注册逻辑，例如调用 API
+      // 由于没有后端支持，这里仅模拟成功注册
+      this.authMessage = "注册成功！请登录。";
+      // 切换回登录模式
+      this.authMode = "SignIn";
+      // 清空注册表单
+      this.registerForm.name = "";
+      this.registerForm.email = "";
+      this.registerForm.password = "";
+    } catch (error) {
+      this.authMessage = "注册失败，请稍后再试。";
+    }
+  }
+},
+
+    handleRegister() {
+      // 如果有单独的注册逻辑，可以在这里实现
+      // 目前 handleSubmit 已经处理了注册逻辑
+      this.handleSubmit();
     },
+
+    closeModal() {
+      console.log("Closing modal and redirecting...");
+  this.showModal = false;
+  // 跳转到 index 页面
+  this.$router.push("/index");
+    },
+
     resetPassword() {
       if (this.resetEmail) {
         this.resetMessage = `Reset password link sent to: ${this.resetEmail}`;
@@ -232,6 +316,7 @@ export default {
         this.resetMessage = "Please enter a valid email.";
       }
     },
+
     changePassword() {
       if (this.newPassword === this.confirmNewPassword) {
         console.log(
@@ -249,6 +334,7 @@ export default {
   },
 };
 </script>
+
 
 <style lang="less">
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");

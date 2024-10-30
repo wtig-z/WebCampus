@@ -152,11 +152,11 @@
                     d="M0 331v112.295a14.996 14.996 0 007.559 13.023L106 512V391L0 331zM136 391v121l105-60V331zM271 331v121l105 60V391zM406 391v121l98.441-55.682A14.995 14.995 0 00512 443.296V331l-106 60zM391 241l-115.754 57.876L391 365.026l116.754-66.15zM262.709 1.583a15.006 15.006 0 00-13.418 0L140.246 57.876 256 124.026l115.754-66.151L262.709 1.583zM136 90v124.955l105 52.5V150zM121 241L4.246 298.876 121 365.026l115.754-66.15zM271 150v117.455l105-52.5V90z"
                   />
                 </svg> -->
-                <!-- <svg viewBox="0 0 512 512" fill="currentColor">
+              <!-- <svg viewBox="0 0 512 512" fill="currentColor">
             <circle cx="295.099" cy="327.254" r="110.96" transform="rotate(-45 295.062 327.332)" />
             <path d="M471.854 338.281V163.146H296.72v41.169a123.1 123.1 0 01121.339 122.939c0 3.717-.176 7.393-.5 11.027zM172.14 327.254a123.16 123.16 0 01100.59-120.915L195.082 73.786 40.146 338.281H172.64c-.325-3.634-.5-7.31-.5-11.027z" /> -->
-                <!-- </svg> -->
-                <!-- 就业趋势
+              <!-- </svg> -->
+              <!-- 就业趋势
               </a> -->
               <!-- <a href="#">
                 <svg viewBox="0 0 58 58" fill="currentColor">
@@ -260,9 +260,26 @@
             <slot name="content">
               <!-- <GraduatesChart/> -->
               <div class="gchart1">
-  <Pie :key="chartKey" :data="chartData" :options="chartOptions" />
-</div>
-
+                <!-- <h2 style="text-align: center">毕业生数据分布图</h2> -->
+                <!-- 条件渲染部分，确保 v-if、v-else-if、v-else 是紧密相连的 -->
+                <div v-if="isLoading" class="loading">加载中...</div>
+                <div
+                  v-else-if="
+                    !chartData.datasets.length ||
+                    !chartData.datasets[0].data.length
+                  "
+                  class="no-data"
+                >
+                  暂无数据
+                </div>
+                <div class="chart-container" v-else>
+                  <Pie
+                    :key="chartKey"
+                    :data="chartData"
+                    :options="chartOptions"
+                  />
+                </div>
+              </div>
             </slot>
           </div>
         </div>
@@ -270,28 +287,23 @@
     </div>
   </div>
 </template>
-  
-  <script>
-//迁移
+<script>
 import { Pie } from "vue-chartjs";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import axios from "axios";
+
 // 注册所需的 Chart.js 组件
 Chart.register(ArcElement, Tooltip, Legend);
 
-import GraduatesChart from "../components/GraduatesChart.vue";
 export default {
-  // name:MainLayout,
   name: "GraduatesChart",
   components: {
-    GraduatesChart,
     Pie,
   },
   data() {
     return {
       form: {
-        month: "",
-        region: "2023", // 存储选中的区域值
+        month: "2023", // 设置默认年份
       },
       months: [
         { label: "2023年", value: "2023" },
@@ -300,21 +312,29 @@ export default {
         { label: "2020年", value: "2020" },
         { label: "2019年", value: "2019" },
       ],
-      isLightMode: false,
-      isBlack: true,
-
+      labels: [
+        "网络工程",
+        "信息管理与信息系统",
+        // 根据需要添加更多标签
+      ],
+      initialDataValues: [
+        296, // 网络工程
+        138, // 信息管理与信息系统
+        // 根据需要添加更多初始数据
+      ],
       chartData: {
-        labels: ["网络工程", "信息管理与信息系统"],
+        labels: [], // 将在初始化时设置
         datasets: [
           {
             label: "毕业生人数",
-            backgroundColor: ["#36A2EB", "#FF6384"],
-            data: [296, 138],
+            backgroundColor: ["#36A2EB", "#FF6384"], // 根据 labels 的数量调整颜色
+            data: [], // 将在初始化时设置
           },
         ],
       },
       chartOptions: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             display: true,
@@ -327,23 +347,82 @@ export default {
           tooltip: {
             callbacks: {
               label: function (context) {
-                return `${context.label}: ${context.raw} 人 (${(
-                  (context.raw / 434) *
-                  100
-                ).toFixed(2)}%)`;
+                const total = context.chart._metasets[context.datasetIndex].total;
+                const percentage = ((context.raw / total) * 100).toFixed(2);
+                return `${context.label}: ${context.raw} 人 (${percentage}%)`;
               },
             },
           },
         },
+        // 移除 x 和 y 轴配置，因为饼图不需要
       },
+      isLightMode: false,
+      isBlack: true,
+      isLoading: false, // 定义加载状态
+      chartKey: 0, // 定义 chartKey，用于强制更新图表（如果需要）
     };
   },
+  mounted() {
+    this.initializeChart();
+    this.updateChartData(this.form.month); // 加载默认年份的数据
+  },
   watch: {
-    'form.month': function(newYear) {
-      this.updateChartData(newYear);  // 当年份更改时调用 updateChartData 方法
+    "form.month": function (newYear) {
+      this.updateChartData(newYear); // 当年份更改时调用 updateChartData 方法
     },
   },
   methods: {
+    initializeChart() {
+      // 初始化图表数据
+      this.chartData = {
+        labels: this.labels,
+        datasets: [
+          {
+            label: "毕业生人数",
+            backgroundColor: ["#36A2EB", "#FF6384"], // 根据 labels 的数量调整颜色
+            data: this.initialDataValues,
+          },
+        ],
+      };
+    },
+    async updateChartData(selectedYear) {
+      console.log("获取数据的年份:", selectedYear);
+      this.isLoading = true; // 开始加载
+      try {
+        const response = await axios.get(
+          `http://localhost:5185/api/Data?year=${selectedYear}`
+        );
+        console.log("获取数据响应:", response.data);
+
+        // 假设 API 返回的数据格式为 [296, 138]
+        if (Array.isArray(response.data)) {
+          if (response.data.length === this.labels.length) {
+            this.chartData.datasets[0].data = response.data;
+            console.log(
+              "更新 chartData.datasets[0].data 成功:",
+              this.chartData.datasets[0].data
+            );
+            // 如果需要强制更新图表，可以增加 chartKey
+            this.chartKey += 1;
+          } else {
+            console.error(
+              "数据长度与标签长度不匹配",
+              response.data.length,
+              this.labels.length
+            );
+            this.chartData.datasets[0].data = [];
+          }
+        } else {
+          console.error("API 返回的数据格式不正确", response.data);
+          this.chartData.datasets[0].data = [];
+        }
+      } catch (error) {
+        console.error("获取数据失败:", error);
+        this.chartData.datasets[0].data = [];
+      } finally {
+        this.isLoading = false; // 结束加载
+      }
+    },
     toggleTheme() {
       this.isLightMode = !this.isLightMode;
       document.body.classList.toggle("light-mode");
@@ -351,47 +430,10 @@ export default {
     toggleColor() {
       this.isBlack = !this.isBlack;
     },
-    async updateChartData(year) {
-      console.log(this.chartData.datasets[0].data);
-      console.log(year);
-
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/data?year=${year}`
-        );
-        
-        // 假设返回的数据格式为 { data: [296, 138] }
-        this.chartData.datasets[0].data = response.data;
-        
-        // 强制重新渲染图表
-        this.chartKey += 1;
-      } catch (error) {
-        console.error("获取数据失败:", error);
-      }
-
-
-      // // 根据不同年份设置不同的数据
-      // if (year === "2023") {
-      //   console.log(this.chartData.datasets[0].data);
-
-      //   this.chartData.datasets[0].data = [296, 138];
-      //   console.log(this.chartData.datasets[0].data);
-      // } else if (year === "2022") {
-      //   this.chartData.datasets[0].data = [280, 150];
-      // } else if (year === "2021") {
-      //   this.chartData.datasets[0].data = [320, 120];
-      // }else if (year === "2019") {
-      //   this.chartData.datasets[0].data = [1, 320];
-      // }
-      // console.log(this.chartData.datasets[0].data);
-      // // 强制更新 chartData
-      // this.chartData = { ...this.chartData };
-      // this.chartKey += 1;
-    },
   },
 };
 </script>
-  
+
   
   <style lang="less" >
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
