@@ -256,7 +256,7 @@
           <div class="jchart1">
   <h2 style="text-align: center">就业形式分布柱状图</h2>
   <!-- 错误的注释语法可能导致问题 -->
-
+   <EmploymentBarChart/> 
   <div v-if="isLoading" style="text-align: center">加载中...</div>
   <div v-else-if="chartData.datasets[0].data.length === 0" style="text-align: center">
     暂无数据
@@ -329,9 +329,7 @@ export default {
       ],
       chartData: {
         labels: [],
-        datasets: [
-          
-        ],
+        datasets: [],
       },
       chartOptions: {
         responsive: true,
