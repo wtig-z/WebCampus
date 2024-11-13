@@ -28,8 +28,12 @@
         </div>
         <div class="nav">
           <router-link class="menu-link" to="/index">平台主页</router-link>
-          <router-link class="menu-link" to="/graduate-data">毕业生数据</router-link>
-          <router-link class="menu-link notify is-active" to="/job-trend">就业趋势分析</router-link>
+          <router-link class="menu-link" to="/graduate-data"
+            >毕业生数据</router-link
+          >
+          <router-link class="menu-link notify is-active" to="/job-trend"
+            >就业趋势分析</router-link
+          >
           <router-link class="menu-link" to="/feed-back">企业反馈</router-link>
         </div>
         <div class="search-box">
@@ -64,7 +68,7 @@
           />
         </div>
       </div>
-    
+
       <div class="container">
         <div class="left-side">
           <div class="side-wrapper">
@@ -121,7 +125,7 @@
           <div class="side-wrapper">
             <div class="side-title">分类</div>
             <div class="side-menu">
-              <a href="#">
+              <a href="#" @click.prevent="showJobMatchChart">
                 <svg viewBox="0 0 512 512" fill="currentColor">
                   <path
                     d="M497 151H316c-8.401 0-15 6.599-15 15v300c0 8.401 6.599 15 15 15h181c8.401 0 15-6.599 15-15V166c0-8.401-6.599-15-15-15zm-76 270h-30c-8.401 0-15-6.599-15-15s6.599-15 15-15h30c8.401 0 15 6.599 15 15s-6.599 15-15 15zm0-180h-30c-8.401 0-15-6.599-15-15s6.599-15 15-15h30c8.401 0 15 6.599 15 15s-6.599 15-15 15z"
@@ -132,7 +136,7 @@
                 </svg>
                 岗位对口分析
               </a>
-              <a href="#">
+              <a href="#"  @click.prevent="showQYChart3">
                 <svg viewBox="0 0 512 512" fill="currentColor">
                   <path
                     d="M0 331v112.295a14.996 14.996 0 007.559 13.023L106 512V391L0 331zM136 391v121l105-60V331zM271 331v121l105 60V391zM406 391v121l98.441-55.682A14.995 14.995 0 00512 443.296V331l-106 60zM391 241l-115.754 57.876L391 365.026l116.754-66.15zM262.709 1.583a15.006 15.006 0 00-13.418 0L140.246 57.876 256 124.026l115.754-66.151L262.709 1.583zM136 90v124.955l105 52.5V150zM121 241L4.246 298.876 121 365.026l115.754-66.15zM271 150v117.455l105-52.5V90z"
@@ -140,7 +144,7 @@
                 </svg>
                 就业岗位分布图
               </a>
-              <a href="#">
+              <a href="#" @click.prevent="showQYChart">
                 <svg viewBox="0 0 58 58" fill="currentColor">
                   <path
                     d="M57 6H1a1 1 0 00-1 1v44a1 1 0 001 1h56a1 1 0 001-1V7a1 1 0 00-1-1zM10 50H2v-9h8v9zm0-11H2v-9h8v9zm0-11H2v-9h8v9zm0-11H2V8h8v9zm26.537 12.844l-11 7a1.007 1.007 0 01-1.018.033A1.001 1.001 0 0124 36V22a1.001 1.001 0 011.538-.844l11 7a1.003 1.003 0 01-.001 1.688zM56 50h-8v-9h8v9zm0-11h-8v-9h8v9zm0-11h-8v-9h8v9zm0-11h-8V8h8v9z"
@@ -152,27 +156,84 @@
           </div>
         </div>
         <div class="main-container">
-          <div class="main-header">
-            <a class="menu-link-main" href="#">所有数据</a>
-            <div class="header-menu">
-              <a class="main-header-link is-active" href="#">统计分析</a>
-              <a class="main-header-link" href="#">图表展示</a>
-              <a class="main-header-link" href="#">用户反馈</a>
+          <div v-if="isShowQYChart">
+            <div class="main-header">
+              <a class="menu-link-main" href="#">所有数据</a>
+              <div class="header-menu">
+                <a
+                  class="main-header-link is-active"
+                  href="#"
+                  @click.prevent="showQYChart1"
+                  >用人流向</a
+                >
+                <a
+                  class="main-header-link"
+                  href="#"
+                  @click.prevent="showQYChart2"
+                  >薪资待遇</a
+                >
+                <a
+                  class="main-header-link"
+                  href="#"
+                 
+                  >用户反馈</a
+                >
+              </div>
             </div>
           </div>
+          <div v-else>
+            <div class="main-header">
+              <a class="menu-link-main" href="#">所有数据</a>
+              <div class="header-menu">
+                <a class="main-header-link is-active" href="#">统计分析</a>
+                <a class="main-header-link" href="#">图表展示</a>
+                <a class="main-header-link" href="#">用户反馈</a>
+              </div>
+            </div>
+          </div>
+
           <!-- 内容区域 -->
           <div class="jchart">
-            <div class="jchart1">
-              <h2 style="text-align: center">就业形式分布柱状图</h2>
-              <!-- 条件渲染部分，确保 v-if、v-else-if、v-else 是紧密相连的 -->
-              <div v-if="isLoading" style="text-align: center">加载中...</div>
-              <div
-                v-else-if="!chartData.datasets.length || !chartData.datasets[0].data.length"
-                style="text-align: center"
-              >
-                暂无数据
+            <!-- 根据 isJobMatchChart 状态显示不同的图表 -->
+            <div v-if="isJobMatchChart">
+              <!-- JobMatchChart 图表 -->
+              <Bar :data="jobMatchChartData" :options="jobMatchChartOptions" />
+            </div>
+            <div v-else-if="isShowQYChart">
+              <div v-if="isShowQYChartNub === 1">
+                <Bar
+                  :data="JYLXchartData"
+                  :options="JYLXchartOptions"
+                  style="height: 450px"
+                />
               </div>
-              <Bar v-else :data="chartData" :options="chartOptions" />
+              <div v-if="isShowQYChartNub === 2">
+                <Bar
+                  :data="XCDYchartData"
+                  :options="XCDYchartOptions"
+                  style="height: 450px"
+                />
+              </div>
+              <div v-if="isShowQYChartNub === 3">
+                <EmploymentMap :employmentData="employmentData" />
+              </div>
+            </div>
+            <div v-else>
+              <!-- 默认的 chartData 图表 -->
+              <div class="jchart1">
+                <h2 style="text-align: center">就业形式分布柱状图</h2>
+                <div v-if="isLoading" style="text-align: center">加载中...</div>
+                <div
+                  v-else-if="
+                    !chartData.datasets.length ||
+                    !chartData.datasets[0].data.length
+                  "
+                  style="text-align: center"
+                >
+                  暂无数据
+                </div>
+                <Bar v-else :data="chartData" :options="chartOptions" />
+              </div>
             </div>
           </div>
         </div>
@@ -180,8 +241,11 @@
     </div>
   </div>
 </template>
-
 <script>
+import { onMounted, nextTick } from "vue";
+import * as echarts from "echarts";
+import ChinaJson from "../assets/China.json"; // 确保路径和大小写正确
+echarts.registerMap("china", ChinaJson);
 import axios from "axios";
 import { Bar } from "vue-chartjs";
 import {
@@ -193,19 +257,50 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-
+import EmploymentMap from '@/components/EmploymentMap.vue'; // 根据项目路径调整
 // 注册所需的 Chart.js 组件
 Chart.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
 export default {
   name: "EmploymentBarChart",
   components: {
+    EmploymentMap,
     Bar,
   },
   data() {
     return {
+      employmentData: [
+        { name: '北京市', value: 37 },
+        { name: '山西省', value: 2 },
+        { name: '吉林省', value: 2 },
+        { name: '黑龙江省', value: 2 },
+        { name: '上海市', value: 21 },
+        { name: '江苏省', value: 13 },
+        { name: '浙江省', value: 31 },
+        { name: '安徽省', value: 2 },
+        { name: '福建省', value: 9 },
+        { name: '江西省', value: 4 },
+        { name: '山东省', value: 6 },
+        { name: '河南省', value: 9 },
+        { name: '湖北省', value: 3 },
+        { name: '湖南省', value: 13 },
+        { name: '广东省', value: 2928 },
+        { name: '广西壮族自治区', value: 2 },
+        { name: '海南省', value: 10 },
+        { name: '重庆市', value: 5 },
+        { name: '四川省', value: 4 },
+        { name: '贵州省', value: 1 },
+        { name: '陕西省', value: 7 },
+        { name: '宁夏回族自治区', value: 3 },
+        { name: '香港特别行政区', value: 2 },
+        { name: '境外（不含港澳台）', value: 12 }
+      ],
+      // 控制图表切换的状态
+      isJobMatchChart: false,
+      isShowQYChart: false,
+      isShowQYChartNub: 1,
       form: {
-        month: "2023", // 设置默认年份
+        month: "2023",
       },
       months: [
         { label: "2023年", value: "2023" },
@@ -244,6 +339,7 @@ export default {
           },
         ],
       },
+      
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -279,12 +375,176 @@ export default {
           },
         },
       },
-      isLightMode: false,
-      isBlack: true,
-      isLoading: false, // 定义加载状态
+      jobMatchChartData: {
+        labels: ["网络工程", "信息管理与信息系统", "本校平均"],
+        datasets: [
+          {
+            label: "岗业对口程度",
+            backgroundColor: ["#168aad", "#168aad", "#ffca3a"],
+            data: [65, 55, 67],
+            borderWidth: 1,
+          },
+        ],
+      },
+      jobMatchChartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: "y",
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: "岗业对口程度",
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return `${context.raw}%`;
+              },
+            },
+          },
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: "百分比 (%)",
+            },
+          },
+          y: {
+            title: {
+              display: true,
+            },
+          },
+        },
+      },
+      JYLXchartData: {
+        labels: [
+          "民营企业/个体",
+          "政府机构/科研或其他事业单位",
+          "国有企业",
+          "中外合资/外资/独资",
+          "民非组织",
+        ],
+        datasets: [
+          {
+            label: "用人单位流向",
+            backgroundColor: [
+              "#4CAF50",
+              "#AED581",
+              "#81C784",
+              "#66BB6A",
+              "#388E3C",
+            ], // 设置每个条形图的颜色
+            data: [77, 9, 8, 5, 1], // 对应的百分比数据
+            borderWidth: 1,
+          },
+        ],
+      },
+      JYLXchartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false, // 隐藏图例
+          },
+          title: {
+            display: true,
+            text: "毕业生的用人单位流向",
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return `${context.raw}%`;
+              },
+            },
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100, // 假设百分比上限为 100
+            title: {
+              display: true,
+              text: "百分比 (%)",
+            },
+          },
+          x: {
+            title: {
+              display: true,
+              text: "单位类型",
+            },
+          },
+        },
+      },
+      XCDYchartData: {
+        labels: [
+          "A.2000元及以下",
+          "B.2001-3000元",
+          "C.3001-4000元",
+          "D.4001-5000元",
+          "E.5001-6000元",
+          "F.6001-7000元",
+          "G.7001-8000元",
+          "H.8001-9000元",
+          "I.9001-10000元",
+          "J.1万-1.5万元",
+          "K.1.5万-2万元",
+          "L.2万元以上",
+        ],
+        datasets: [
+          {
+            label: "毕业生薪酬待遇分布",
+            backgroundColor: "#4CAF50",
+            data: [140, 115, 64, 422, 549, 396, 253, 92, 70, 17, 5, 3],
+            borderWidth: 1,
+          },
+        ],
+      },
+      XCDYchartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false, // 隐藏图例
+          },
+          title: {
+            display: true,
+            text: "毕业生薪酬待遇分布统计图",
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return `${context.raw} 人`;
+              },
+            },
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "人数",
+            },
+          },
+          x: {
+            title: {
+              display: true,
+              text: "薪酬范围 (元)",
+            },
+          },
+        },
+      },
+      isLoading: false,
     };
   },
   mounted() {
+
     this.initializeChart();
     this.updateChartData(this.form.month); // 加载默认年份的数据
   },
@@ -294,6 +554,7 @@ export default {
     },
   },
   methods: {
+
     initializeChart() {
       // 初始化图表数据
       this.chartData = {
@@ -318,7 +579,6 @@ export default {
         );
         console.log("获取数据响应:", response.data);
 
-        // 确保 response.data 是一个数组
         if (Array.isArray(response.data)) {
           if (response.data.length === this.labels.length) {
             this.chartData.datasets[0].data = response.data;
@@ -338,14 +598,57 @@ export default {
           console.error("API 返回的数据格式不正确", response.data);
           this.chartData.datasets[0].data = [];
         }
-
-        // Vue 的响应式系统会自动检测变化，无需强制重新渲染
       } catch (error) {
         console.error("获取数据失败:", error);
         this.chartData.datasets[0].data = [];
       } finally {
         this.isLoading = false; // 结束加载
       }
+    },
+    async updateJobMatchChartData(category) {
+      console.log("获取岗位对口数据的类别:", category);
+      this.isLoading = true; // 开始加载
+      try {
+        const response = await axios.get(
+          `http://localhost:5185/api/Data2/GetAlternativeChartData?category=${category}`
+        );
+        console.log("岗位对口数据响应:", response.data);
+
+        if (Array.isArray(response.data) && response.data.length === 3) {
+          // 确保返回的数据长度为 3，符合图表需求
+          this.jobMatchChartData.datasets[0].data = response.data;
+          console.log(
+            "更新 jobMatchChartData 成功:",
+            this.jobMatchChartData.datasets[0].data
+          );
+          this.$forceUpdate(); // 强制重新渲染
+        } else {
+          console.error("数据长度不符合预期", response.data.length);
+          this.jobMatchChartData.datasets[0].data = [0, 0, 0]; // 置空或默认值
+        }
+      } catch (error) {
+        console.error("获取岗位对口数据失败:", error);
+        this.jobMatchChartData.datasets[0].data = [0, 0, 0];
+      } finally {
+        this.isLoading = false; // 结束加载
+      }
+    },
+
+    showJobMatchChart() {
+      this.isJobMatchChart = !this.isJobMatchChart; // 切换图表显示状态
+    },
+
+    showQYChart() {
+      this.isShowQYChart = !this.isShowQYChart; // 切换图表显示状态
+    },
+    showQYChart1() {
+      this.isShowQYChartNub = 1; // 切换图表显示状态
+    },
+    showQYChart2() {
+      this.isShowQYChartNub = 2; // 切换图表显示状态
+    },
+    showQYChart3() {
+      this.isShowQYChartNub = 3; // 切换图表显示状态
     },
     toggleTheme() {
       this.isLightMode = !this.isLightMode;
@@ -358,18 +661,16 @@ export default {
 };
 </script>
 
-<style>
-/* 你的样式保持不变 */
-.jchart1 {
-  width: 100%;
-  height: 600px; /* 根据需要调整高度 */
-}
-</style>
+
+
 
   
   <style lang="less" >
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-
+.jchart1 {
+  width: 100%;
+  height: 500px; /* 根据需要调整高度 */
+}
 .select-input {
   padding: 8px 12px;
   border: 1px solid transparent;
@@ -1358,5 +1659,7 @@ body.light-mode .video-bg:before {
   object-fit: contain; /* 确保图像或元素按比例缩放 */
   transform: none; /* 移除缩放 */
 }
+
+
 </style>
   
