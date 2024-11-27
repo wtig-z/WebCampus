@@ -136,7 +136,7 @@
                 </svg>
                 岗位对口分析
               </a>
-              <a href="#"  @click.prevent="showQYChart3">
+              <a @click.prevent="showJobMatchChart3">
                 <svg viewBox="0 0 512 512" fill="currentColor">
                   <path
                     d="M0 331v112.295a14.996 14.996 0 007.559 13.023L106 512V391L0 331zM136 391v121l105-60V331zM271 331v121l105 60V391zM406 391v121l98.441-55.682A14.995 14.995 0 00512 443.296V331l-106 60zM391 241l-115.754 57.876L391 365.026l116.754-66.15zM262.709 1.583a15.006 15.006 0 00-13.418 0L140.246 57.876 256 124.026l115.754-66.151L262.709 1.583zM136 90v124.955l105 52.5V150zM121 241L4.246 298.876 121 365.026l115.754-66.15zM271 150v117.455l105-52.5V90z"
@@ -144,7 +144,7 @@
                 </svg>
                 就业岗位分布图
               </a>
-              <a href="#" @click.prevent="showQYChart">
+              <a href="#" @click.prevent="showJobMatchChart2">
                 <svg viewBox="0 0 58 58" fill="currentColor">
                   <path
                     d="M57 6H1a1 1 0 00-1 1v44a1 1 0 001 1h56a1 1 0 001-1V7a1 1 0 00-1-1zM10 50H2v-9h8v9zm0-11H2v-9h8v9zm0-11H2v-9h8v9zm0-11H2V8h8v9zm26.537 12.844l-11 7a1.007 1.007 0 01-1.018.033A1.001 1.001 0 0124 36V22a1.001 1.001 0 011.538-.844l11 7a1.003 1.003 0 01-.001 1.688zM56 50h-8v-9h8v9zm0-11h-8v-9h8v9zm0-11h-8v-9h8v9zm0-11h-8V8h8v9z"
@@ -156,7 +156,7 @@
           </div>
         </div>
         <div class="main-container">
-          <div v-if="isShowQYChart">
+          <div v-if="isJobMatchChart === 2">
             <div class="main-header">
               <a class="menu-link-main" href="#">所有数据</a>
               <div class="header-menu">
@@ -172,11 +172,32 @@
                   @click.prevent="showQYChart2"
                   >薪资待遇</a
                 >
+     
+              </div>
+            </div>
+          </div>
+          <div v-else-if="isJobMatchChart === 0">
+            <div class="main-header">
+              <a class="menu-link-main" href="#">所有数据</a>
+              <div class="header-menu">
+                <a
+                  class="main-header-link is-active"
+                  href="#"
+                  @click.prevent="showQYChart1"
+                  >就业形式</a
+                >
                 <a
                   class="main-header-link"
                   href="#"
-                 
-                  >用户反馈</a
+                  @click.prevent="showQYChart2"
+                  >就业趋势</a
+                >
+
+                <a
+                  class="main-header-link"
+                  href="#"
+                  @click.prevent="showQYChart2"
+                  >AIGC智能分析</a
                 >
               </div>
             </div>
@@ -195,11 +216,11 @@
           <!-- 内容区域 -->
           <div class="jchart">
             <!-- 根据 isJobMatchChart 状态显示不同的图表 -->
-            <div v-if="isJobMatchChart">
+            <div v-if="isJobMatchChart === 1">
               <!-- JobMatchChart 图表 -->
               <Bar :data="jobMatchChartData" :options="jobMatchChartOptions" />
             </div>
-            <div v-else-if="isShowQYChart">
+            <div v-else-if="isJobMatchChart === 2">
               <div v-if="isShowQYChartNub === 1">
                 <Bar
                   :data="JYLXchartData"
@@ -216,6 +237,38 @@
               </div>
               <div v-if="isShowQYChartNub === 3">
                 <EmploymentMap :employmentData="employmentData" />
+              </div>
+            </div>
+            <div v-else-if="isJobMatchChart === 3">
+              <EmploymentMap :employmentData="employmentData" />
+            </div>
+            <div v-else-if="isJobMatchChart === 0">
+              <div v-if="isShowQYChartNub === 1">
+                <div class="jchart1">
+                  <h2 style="text-align: center">就业形式分布柱状图</h2>
+                  <div v-if="isLoading" style="text-align: center">
+                    加载中...
+                  </div>
+                  <div
+                    v-else-if="
+                      !chartData.datasets.length ||
+                      !chartData.datasets[0].data.length
+                    "
+                    style="text-align: center"
+                  >
+                    暂无数据
+                  </div>
+                  <Bar v-else :data="chartData" :options="chartOptions" />
+                </div>
+              </div>
+              <div v-if="isShowQYChartNub === 2">
+                <h2 style="text-align: center">就业人数变化趋势</h2>
+                <div style="width: 510px; height: 410px">
+                  <Line
+                    :data="employmentTrendData"
+                    :options="employmentTrendOptions"
+                  />
+                </div>
               </div>
             </div>
             <div v-else>
@@ -248,6 +301,7 @@ import ChinaJson from "../assets/China.json"; // 确保路径和大小写正确
 echarts.registerMap("china", ChinaJson);
 import axios from "axios";
 import { Bar } from "vue-chartjs";
+import { Line } from "vue-chartjs";
 import {
   Chart,
   BarElement,
@@ -256,47 +310,107 @@ import {
   Title,
   Tooltip,
   Legend,
+
+  LineElement,
+  PointElement,
 } from "chart.js";
-import EmploymentMap from '@/components/EmploymentMap.vue'; // 根据项目路径调整
+import EmploymentMap from "@/components/EmploymentMap.vue"; // 根据项目路径调整
 // 注册所需的 Chart.js 组件
-Chart.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
+Chart.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend,LineElement,
+  PointElement);
 
 export default {
   name: "EmploymentBarChart",
   components: {
     EmploymentMap,
     Bar,
+    Line,
   },
   data() {
     return {
+      employmentTrendData: {
+        labels: ["2020", "2021", "2022", "2023", "2024", "2025"],
+        datasets: [
+          {
+            label: "专业对口人数",
+            data: [120, 130, 140, 150, 160, 170],
+            borderColor: "#5470C6",
+            backgroundColor: "rgba(84, 112, 198, 0.5)",
+            tension: 0.4,
+          },
+          {
+            label: "非专业对口人数",
+            data: [60, 65, 70, 75, 80, 85],
+            borderColor: "#91CC75",
+            backgroundColor: "rgba(145, 204, 117, 0.5)",
+            tension: 0.4,
+          },
+          {
+            label: "基层干部人数",
+            data: [15, 18, 20, 22, 25, 28],
+            borderColor: "#EE6666",
+            backgroundColor: "rgba(238, 102, 102, 0.5)",
+            tension: 0.4,
+          },
+        ],
+      },
+      employmentTrendOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "就业人数变化趋势",
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: "年份",
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "人数",
+            },
+          },
+        },
+      },
       employmentData: [
-        { name: '北京市', value: 37 },
-        { name: '山西省', value: 2 },
-        { name: '吉林省', value: 2 },
-        { name: '黑龙江省', value: 2 },
-        { name: '上海市', value: 21 },
-        { name: '江苏省', value: 13 },
-        { name: '浙江省', value: 31 },
-        { name: '安徽省', value: 2 },
-        { name: '福建省', value: 9 },
-        { name: '江西省', value: 4 },
-        { name: '山东省', value: 6 },
-        { name: '河南省', value: 9 },
-        { name: '湖北省', value: 3 },
-        { name: '湖南省', value: 13 },
-        { name: '广东省', value: 2928 },
-        { name: '广西壮族自治区', value: 2 },
-        { name: '海南省', value: 10 },
-        { name: '重庆市', value: 5 },
-        { name: '四川省', value: 4 },
-        { name: '贵州省', value: 1 },
-        { name: '陕西省', value: 7 },
-        { name: '宁夏回族自治区', value: 3 },
-        { name: '香港特别行政区', value: 2 },
-        { name: '境外（不含港澳台）', value: 12 }
+        { name: "北京市", value: 37 },
+        { name: "山西省", value: 2 },
+        { name: "吉林省", value: 2 },
+        { name: "黑龙江省", value: 2 },
+        { name: "上海市", value: 21 },
+        { name: "江苏省", value: 13 },
+        { name: "浙江省", value: 31 },
+        { name: "安徽省", value: 2 },
+        { name: "福建省", value: 9 },
+        { name: "江西省", value: 4 },
+        { name: "山东省", value: 6 },
+        { name: "河南省", value: 9 },
+        { name: "湖北省", value: 3 },
+        { name: "湖南省", value: 13 },
+        { name: "广东省", value: 2928 },
+        { name: "广西壮族自治区", value: 2 },
+        { name: "海南省", value: 10 },
+        { name: "重庆市", value: 5 },
+        { name: "四川省", value: 4 },
+        { name: "贵州省", value: 1 },
+        { name: "陕西省", value: 7 },
+        { name: "宁夏回族自治区", value: 3 },
+        { name: "香港特别行政区", value: 2 },
+        { name: "境外（不含港澳台）", value: 12 },
       ],
       // 控制图表切换的状态
-      isJobMatchChart: false,
+      isJobMatchChart: 0,
       isShowQYChart: false,
       isShowQYChartNub: 1,
       form: {
@@ -339,7 +453,7 @@ export default {
           },
         ],
       },
-      
+
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -544,7 +658,6 @@ export default {
     };
   },
   mounted() {
-
     this.initializeChart();
     this.updateChartData(this.form.month); // 加载默认年份的数据
   },
@@ -554,7 +667,6 @@ export default {
     },
   },
   methods: {
-
     initializeChart() {
       // 初始化图表数据
       this.chartData = {
@@ -635,12 +747,16 @@ export default {
     },
 
     showJobMatchChart() {
-      this.isJobMatchChart = !this.isJobMatchChart; // 切换图表显示状态
+      this.isJobMatchChart = 1; // 切换图表显示状态
     },
 
-    showQYChart() {
-      this.isShowQYChart = !this.isShowQYChart; // 切换图表显示状态
+    showJobMatchChart2() {
+      this.isJobMatchChart = 2; // 切换图表显示状态
     },
+    showJobMatchChart3() {
+      this.isJobMatchChart = 3; // 切换图表显示状态
+    },
+
     showQYChart1() {
       this.isShowQYChartNub = 1; // 切换图表显示状态
     },
@@ -1659,7 +1775,5 @@ body.light-mode .video-bg:before {
   object-fit: contain; /* 确保图像或元素按比例缩放 */
   transform: none; /* 移除缩放 */
 }
-
-
 </style>
   

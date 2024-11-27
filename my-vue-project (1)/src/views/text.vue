@@ -1,127 +1,98 @@
 <template>
-  <div id="employmentMapContent"></div>
+  <div>
+    <h2 style="text-align: center">就业人数变化趋势</h2>
+    <div style="width: 650; height: 450px;">
+      <Line :data="employmentTrendData" :options="employmentTrendOptions" />
+    </div>
+  </div>
 </template>
 
 <script>
-import { onMounted, nextTick } from 'vue';
-import * as echarts from 'echarts';
-import ChinaJson from '../assets/China.json'; // 确保路径和大小写正确
+import {
+  Chart,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "vue-chartjs";
 
-// 注册中国地图
-echarts.registerMap("china", ChinaJson);
+Chart.register(
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export default {
-  name: 'EmploymentMap',
+  name: "EmploymentTrendChart",
+  components: {
+    Line,
+  },
   data() {
     return {
-      employmentData: [
-        { name: '北京市', value: 37 },
-        { name: '山西省', value: 2 },
-        { name: '吉林省', value: 2 },
-        { name: '黑龙江省', value: 2 },
-        { name: '上海市', value: 21 },
-        { name: '江苏省', value: 13 },
-        { name: '浙江省', value: 31 },
-        { name: '安徽省', value: 2 },
-        { name: '福建省', value: 9 },
-        { name: '江西省', value: 4 },
-        { name: '山东省', value: 6 },
-        { name: '河南省', value: 9 },
-        { name: '湖北省', value: 3 },
-        { name: '湖南省', value: 13 },
-        { name: '广东省', value: 2928 },
-        { name: '广西壮族自治区', value: 2 },
-        { name: '海南省', value: 10 },
-        { name: '重庆市', value: 5 },
-        { name: '四川省', value: 4 },
-        { name: '贵州省', value: 1 },
-        { name: '陕西省', value: 7 },
-        { name: '宁夏回族自治区', value: 3 },
-        { name: '香港特别行政区', value: 2 },
-        { name: '境外（不含港澳台）', value: 12 }
-      ]
+      employmentTrendData: {
+        labels: ["2020", "2021", "2022", "2023", "2024", "2025"],
+        datasets: [
+          {
+            label: "专业对口人数",
+            data: [120, 130, 140, 150, 160, 170],
+            borderColor: "#5470C6",
+            backgroundColor: "rgba(84, 112, 198, 0.5)",
+            tension: 0.4,
+          },
+          {
+            label: "非专业对口人数",
+            data: [60, 65, 70, 75, 80, 85],
+            borderColor: "#91CC75",
+            backgroundColor: "rgba(145, 204, 117, 0.5)",
+            tension: 0.4,
+          },
+          {
+            label: "基层干部人数",
+            data: [15, 18, 20, 22, 25, 28],
+            borderColor: "#EE6666",
+            backgroundColor: "rgba(238, 102, 102, 0.5)",
+            tension: 0.4,
+          },
+        ],
+      },
+      employmentTrendOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "就业人数变化趋势",
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: "年份",
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "人数",
+            },
+          },
+        },
+      },
     };
   },
-  methods: {
-    drawEmploymentMap(dom) {
-      const option = {
-        tooltip: {
-          trigger: 'item',
-          formatter: (params) => {
-            const name = params.name;
-            const dataItem = this.employmentData.find(item => item.name === name);
-            const value = dataItem ? dataItem.value : 0;
-            return `${name}: ${value} 人`;
-          }
-        },
-        visualMap: {
-          min: 0,
-          max: 3000,
-          left: 'left',
-          top: 'bottom',
-          text: ['高', '低'],
-          inRange: {
-            color: ['#e0ffff', '#006edd']
-          },
-          calculable: true
-        },
-        geo: {
-          map: 'china',
-          roam: true,
-          label: {
-            show: true,
-            color: '#000'
-          },
-          itemStyle: {
-            areaColor: '#f0f0f0',
-            borderColor: '#999'
-          },
-          emphasis: {
-            itemStyle: {
-              areaColor: '#c9d6ff'
-            }
-          }
-        },
-        series: [
-          {
-            name: '就业人数',
-            type: 'map',
-            map: 'china',
-            geoIndex: 0,
-            data: this.employmentData,
-            label: {
-              show: true,
-              color: '#000'
-            },
-            itemStyle: {
-              color: '#FF6F61'
-            }
-          }
-        ]
-      };
-
-      const echartObj = echarts.init(dom);
-      echartObj.setOption(option);
-    }
-  },
-  mounted() {
-    nextTick(() => {
-      const dom = document.getElementById("employmentMapContent");
-      if (dom) {
-        this.drawEmploymentMap(dom);
-      } else {
-        console.error("容器元素未找到！");
-      }
-    });
-  }
 };
 </script>
-
-<style scoped>
-#employmentMapContent {
-  width: 800px;
-  height: 600px;
-  padding-top: 20px;
-  box-sizing: border-box;
-}
-</style>
