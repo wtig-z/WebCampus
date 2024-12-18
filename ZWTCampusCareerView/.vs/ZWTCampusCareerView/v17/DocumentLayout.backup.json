@@ -1,0 +1,362 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\dal\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:dal\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\viewmodels\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:viewmodels\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\bll\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:bll\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\bll\\interfaces\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:bll\\interfaces\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\controllers\\chartdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:controllers\\chartdatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\controllers\\passwordresetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:controllers\\passwordresetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\controllers\\jobtrendchartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:controllers\\jobtrendchartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\controllers\\chartdata2controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:controllers\\chartdata2controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\viewmodels\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:viewmodels\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\controllers\\valuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:controllers\\valuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\viewmodels\\changepasswordrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:viewmodels\\changepasswordrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\dal\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:dal\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u90D1\u5A49\u5A77\\Documents\\WeChat Files\\wxid_j8yz5foleksr22\\FileStorage\\File\\2024-11\\0201.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\zwtcampuscareerview.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:zwtcampuscareerview.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\zwtcampuscareerview.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:zwtcampuscareerview.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|d:\\z-wtig\\my work space\\eight\\dasan\\web\u5F00\u53D1\\demo\\zwtcampuscareerview\\zwtcampuscareerview.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{EADB6A20-E883-4B8A-9598-13E67E92B6E9}|ZWTCampusCareerView.csproj|solutionrelative:zwtcampuscareerview.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 100,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 236,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ChartDataController.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\ChartDataController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ChartDataController.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\ChartDataController.cs",
+              "RelativeToolTip": "Controllers\\ChartDataController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T07:16:36.241Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "0201.cpp",
+              "DocumentMoniker": "C:\\Users\\\u90D1\u5A49\u5A77\\Documents\\WeChat Files\\wxid_j8yz5foleksr22\\FileStorage\\File\\2024-11\\0201.cpp",
+              "ToolTip": "C:\\Users\\\u90D1\u5A49\u5A77\\Documents\\WeChat Files\\wxid_j8yz5foleksr22\\FileStorage\\File\\2024-11\\0201.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACwAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-21T03:26:32.894Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ChartData2Controller.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\ChartData2Controller.cs",
+              "RelativeDocumentMoniker": "Controllers\\ChartData2Controller.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\ChartData2Controller.cs",
+              "RelativeToolTip": "Controllers\\ChartData2Controller.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T11:40:19.136Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "JobtrendChartController.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\JobtrendChartController.cs",
+              "RelativeDocumentMoniker": "Controllers\\JobtrendChartController.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\JobtrendChartController.cs",
+              "RelativeToolTip": "Controllers\\JobtrendChartController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAABzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T09:43:47.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginRequest.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ViewModels\\LoginRequest.cs",
+              "RelativeDocumentMoniker": "ViewModels\\LoginRequest.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ViewModels\\LoginRequest.cs",
+              "RelativeToolTip": "ViewModels\\LoginRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T11:49:27.664Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RegisterRequest.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ViewModels\\RegisterRequest.cs",
+              "RelativeDocumentMoniker": "ViewModels\\RegisterRequest.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ViewModels\\RegisterRequest.cs",
+              "RelativeToolTip": "ViewModels\\RegisterRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T11:44:09.348Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ChangePasswordRequest.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ViewModels\\ChangePasswordRequest.cs",
+              "RelativeDocumentMoniker": "ViewModels\\ChangePasswordRequest.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ViewModels\\ChangePasswordRequest.cs",
+              "RelativeToolTip": "ViewModels\\ChangePasswordRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAUAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T11:26:01.407Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T11:24:55.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\BLL\\AccountService.cs",
+              "RelativeDocumentMoniker": "BLL\\AccountService.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\BLL\\AccountService.cs",
+              "RelativeToolTip": "BLL\\AccountService.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAUwDEAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T11:24:22.918Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IAccountService.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\BLL\\Interfaces\\IAccountService.cs",
+              "RelativeDocumentMoniker": "BLL\\Interfaces\\IAccountService.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\BLL\\Interfaces\\IAccountService.cs",
+              "RelativeToolTip": "BLL\\Interfaces\\IAccountService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T11:23:55.619Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\DAL\\UserRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\UserRepository.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\DAL\\UserRepository.cs",
+              "RelativeToolTip": "DAL\\UserRepository.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAkwBAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T11:23:22.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\DAL\\Interfaces\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\Interfaces\\IUserRepository.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\DAL\\Interfaces\\IUserRepository.cs",
+              "RelativeToolTip": "DAL\\Interfaces\\IUserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T11:20:32.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T10:59:07.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ZWTCampusCareerView.http",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ZWTCampusCareerView.http",
+              "RelativeDocumentMoniker": "ZWTCampusCareerView.http",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ZWTCampusCareerView.http",
+              "RelativeToolTip": "ZWTCampusCareerView.http",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-10-09T10:52:19.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PasswordResetController.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\PasswordResetController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PasswordResetController.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\PasswordResetController.cs",
+              "RelativeToolTip": "Controllers\\PasswordResetController.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAIBBwAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T10:25:35.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-09T10:16:37.819Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "WeatherForecast.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\WeatherForecast.cs",
+              "RelativeToolTip": "WeatherForecast.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T09:59:20.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAA3wCsAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-13T13:53:38.379Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ZWTCampusCareerView",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ZWTCampusCareerView.csproj",
+              "RelativeDocumentMoniker": "ZWTCampusCareerView.csproj",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ZWTCampusCareerView.csproj",
+              "RelativeToolTip": "ZWTCampusCareerView.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-13T13:53:23.589Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ValuesController.cs",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\ValuesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ValuesController.cs",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\Controllers\\ValuesController.cs",
+              "RelativeToolTip": "Controllers\\ValuesController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABsAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-13T13:28:48.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ZWTCampusCareerView.csproj",
+              "DocumentMoniker": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ZWTCampusCareerView.csproj",
+              "RelativeDocumentMoniker": "ZWTCampusCareerView.csproj",
+              "ToolTip": "D:\\Z-Wtig\\MY WORK SPACE\\EIGHT\\DASAN\\web\u5F00\u53D1\\DEMO\\ZWTCampusCareerView\\ZWTCampusCareerView.csproj",
+              "RelativeToolTip": "ZWTCampusCareerView.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-13T13:24:11.092Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
